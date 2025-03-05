@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id  Int  @id @default(autoincrement())
+  email String @unique
+  userName String
+  password String 
+  isLocked Boolean? @default(false)
+  loginAttempts Int @default(0)
+  loginAt DateTime @default(now())
+  isOnline Boolean @default(false)
+  loginDevice String?
+  createdAt DateTime @default(now())
+  createdBy String 
+  updatedAt DateTime @default(now())
+  updatedBy String?
+  isActive Boolean @default(true)
+}
+
+
+model Student {
+  id  Int  @id @default(autoincrement())
+  Code   String @unique @db.VarChar(255)
+  FullNameInEnglish    String @db.VarChar(255)
+  FullNameInMyanmar String @db.VarChar(255)
+  Email String @db.VarChar(36)
+  NRC String @unique
+  Passport String? @db.VarChar(255)
+  Phone String @db.VarChar(255)
+  DOB DateTime 
+  Gender String @db.Char(1)
+  Address String
+  GuardiandId Int?
+  Profile String @db.Char(255)
+  // userId Int @unique
+  // user User @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
