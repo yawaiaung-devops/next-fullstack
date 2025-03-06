@@ -9,7 +9,7 @@ export type ResponseData = {
   message: string;
 };
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 export async function GET() {
   return NextResponse.json({

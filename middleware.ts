@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
    * * IF cookie has a token => user already login => redirect => home
    * * cookie does not have a token => redirect => login page
    */
+
   const path = request.nextUrl.pathname;
   if (!cookie?.value && path === "/home") {
     return NextResponse.redirect(new URL("/login", request.url));

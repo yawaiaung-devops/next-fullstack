@@ -31,19 +31,17 @@ export async function POST(req: NextRequest) {
       return handleResp(401, "Authorized", "Invalid credentails", null);
     }
 
-    const userPayload=  {
+    const userPayload = {
       email: user.email,
       name: user.userName,
       id: user.id,
-    }
+    };
 
     const token = await generateToken(userPayload);
 
     const cookie = await cookies();
 
-    cookie.set("auth", token, {
-      expires: Date.now() + 7 * 24 * 3600,
-    });
+    cookie.set("auth", token);
     cookie.set("login_user", JSON.stringify(userPayload));
 
     return handleResp(
