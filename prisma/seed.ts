@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 
 const users = [
   {
-    email: "superadmin@example.com",
+    email: "superadmin@gmail.com",
     userName: "superadmin",
-    password:"@dminP@ssword", // Replace with a real hashed password
+    password: "@dminP@ssword", // Replace with a real hashed password
     isLocked: false,
     loginAttempts: 0,
     loginAt: new Date(),
@@ -24,14 +24,14 @@ const users = [
 async function seed() {
   const salt = await bcrypt.genSaltSync(10);
   await prisma.$connect();
-  users.map(async(user) => {
+  users.map(async (user) => {
     await prisma.user.create({
-      data:{
+      data: {
         ...user,
-        password:await bcrypt.hash(user.password, salt)
-      }
-    })
-  })
+        password: await bcrypt.hash(user.password, salt),
+      },
+    });
+  });
 
   console.log("Seed data created");
 }

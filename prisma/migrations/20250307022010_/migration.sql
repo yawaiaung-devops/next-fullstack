@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `User` ADD COLUMN `roleid` INTEGER NOT NULL DEFAULT 1;
+
+-- AddForeignKey
+ALTER TABLE `User` ADD CONSTRAINT `User_roleid_fkey` FOREIGN KEY (`roleid`) REFERENCES `Role`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

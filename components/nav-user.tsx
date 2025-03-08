@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   BadgeCheck,
@@ -7,13 +7,9 @@ import {
   CreditCard,
   LogOut,
   Sparkles,
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,28 +18,26 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { deleteCookie, getCookie } from 'cookies-next'
-import { redirect } from "next/navigation"
-import { Button } from "./ui/button"
+} from "@/components/ui/sidebar";
+import { deleteCookie, getCookie } from "cookies-next";
+import { redirect } from "next/navigation";
+import { Button } from "./ui/button";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const user = JSON.parse(getCookie('login_user'))
+  const user = getCookie("login_user");
 
   const handleLogout = () => {
-    deleteCookie(process.env.NEXT_PUBLIC_AUTH_KEY as string)
-    deleteCookie("login_user")
-    redirect('/login')
-  }
+    deleteCookie(process.env.NEXT_PUBLIC_AUTH_KEY as string);
+    deleteCookie("login_user");
+    redirect("/login");
+  };
 
   return (
     <SidebarMenu>
@@ -55,12 +49,35 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">{user.name.slice(0,2).toUpperCase()}</AvatarFallback>
+                <AvatarImage
+                  src={
+                    user && typeof user === "string"
+                      ? JSON.parse(user).avatar
+                      : undefined
+                  }
+                  alt={
+                    user && typeof user === "string"
+                      ? JSON.parse(user).name
+                      : undefined
+                  }
+                />
+                <AvatarFallback className="rounded-lg">
+                  {user && typeof user === "string"
+                    ? JSON.parse(user).name?.slice(0, 2).toUpperCase()
+                    : "U"}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium capitalize">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium capitalize">
+                  {user && typeof user === "string"
+                    ? JSON.parse(user).name
+                    : "User"}
+                </span>
+                <span className="truncate text-xs">
+                  {user && typeof user === "string"
+                    ? JSON.parse(user).email
+                    : ""}
+                </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -74,12 +91,35 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage
+                    src={
+                      user && typeof user === "string"
+                        ? JSON.parse(user).avatar
+                        : undefined
+                    }
+                    alt={
+                      user && typeof user === "string"
+                        ? JSON.parse(user).name
+                        : undefined
+                    }
+                  />
+                  <AvatarFallback className="rounded-lg">
+                    {user && typeof user === "string"
+                      ? JSON.parse(user).name?.slice(0, 2).toUpperCase()
+                      : "U"}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium capitalize">
+                    {user && typeof user === "string"
+                      ? JSON.parse(user).name
+                      : "User"}
+                  </span>
+                  <span className="truncate text-xs">
+                    {user && typeof user === "string"
+                      ? JSON.parse(user).email
+                      : ""}
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -107,7 +147,6 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-
               <Button onClick={handleLogout}>
                 <LogOut />
                 Log out
@@ -117,5 +156,5 @@ export function NavUser() {
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
