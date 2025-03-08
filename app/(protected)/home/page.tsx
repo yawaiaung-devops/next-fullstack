@@ -1,4 +1,4 @@
-import { Overview, RecentActivities } from "@/components/pages/home"
+import { Overview, RecentActivities } from "@/components/pages/home";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,13 +6,17 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
 import {
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { GraduationCap, School, Users } from "lucide-react"
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { GraduationCap, School, Users } from "lucide-react";
 
 export default function Page() {
   return (
@@ -44,9 +48,7 @@ export default function Page() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total User
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total User</CardTitle>
               <Users />
             </CardHeader>
             <CardContent>
@@ -78,12 +80,13 @@ export default function Page() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+10</div>
-
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Student</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Total Student
+              </CardTitle>
               <GraduationCap />
             </CardHeader>
             <CardContent>
@@ -95,9 +98,7 @@ export default function Page() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Class
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total Class</CardTitle>
               <School />
             </CardHeader>
             <CardContent>
@@ -129,6 +130,5 @@ export default function Page() {
         </div>
       </section>
     </>
-
-  )
+  );
 }

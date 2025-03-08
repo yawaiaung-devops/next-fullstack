@@ -1,4 +1,4 @@
-import { JWTPayload, SignJWT } from "jose";
+import { JWTPayload, SignJWT, jwtVerify } from "jose";
 
 /**
  * Generates a JWT token with the provided payload and secret key
@@ -24,4 +24,12 @@ const generateToken = async <T extends JWTPayload>(
 
   return token;
 };
-export { generateToken };
+
+
+const verifyToken =async <T>(token:string):Promise<T>=> {
+   const info=await jwtVerify(token,new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET))
+   return info as T;
+}
+
+
+export { generateToken, verifyToken };

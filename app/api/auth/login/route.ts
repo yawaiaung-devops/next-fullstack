@@ -11,6 +11,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const user = await prisma.user.findFirst({
+      include: {
+        role: true,
+      },
       where: {
         email: data.email,
       },
@@ -35,6 +38,7 @@ export async function POST(req: NextRequest) {
       email: user.email,
       name: user.userName,
       id: user.id,
+      role: user.role.roleName,
     };
 
     const token = await generateToken(userPayload);
