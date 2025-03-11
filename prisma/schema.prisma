@@ -42,8 +42,6 @@ model Student {
   Address String
   GuardiandId Int?
   Profile String @db.Char(255)
-  // userId Int @unique
-  // user User @relation(fields: [userId], references: [id])
 }
 
 model Role{
@@ -55,4 +53,18 @@ model Role{
   createdAt DateTime @default(now())
 }
 
+model ClassRoom {
+  id Int @id @default(autoincrement())
+  className String
+  startDate DateTime
+  endDate DateTime
+  fees Int
+  teacherClass TeacherClass[]
+}
 
+model TeacherClass{
+   id Int @id @default(autoincrement())
+   classRoomId Int
+   teacherId Int
+   class ClassRoom @relation(fields: [classRoomId], references: [id])
+}

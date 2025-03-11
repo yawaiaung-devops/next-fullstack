@@ -1,24 +1,27 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
+  BookOpenText,
   Command,
   GalleryVerticalEnd,
+  GraduationCap,
   LayoutDashboard,
-  Settings2
-} from "lucide-react"
+  School,
+  Settings2,
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const data = {
   user: {
@@ -45,9 +48,24 @@ const data = {
   ],
   navMain: [
     {
-      title:"Dashboard",
+      title: "Dashboard",
       url: "/home",
-      icon: LayoutDashboard
+      icon: LayoutDashboard,
+    },
+    {
+      title: "Teacher",
+      url: "/teacher",
+      icon: GraduationCap,
+    },
+    {
+      title: "Student",
+      url: "/student",
+      icon: GraduationCap,
+    },
+    {
+      title: "Courses",
+      url: "/courses",
+      icon: BookOpenText,
     },
     {
       title: "Settings",
@@ -61,11 +79,11 @@ const data = {
         {
           title: "Role",
           url: "/role",
-        }
+        },
       ],
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -77,9 +95,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser/>
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

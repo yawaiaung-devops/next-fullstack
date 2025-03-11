@@ -5,3 +5,6 @@ export const formatDate = (date: string | Date, dateFormat?: string) =>
 
 export const formatDateTime = (date: string | Date) =>
   formatDate(date, "dd MMM yyyy, hh:mm aa");
+
+export const formatNumber = (val: number) =>
+  Intl.NumberFormat("en-us").format(val);

@@ -11,7 +11,7 @@ import {
 
 const RolePage = () => {
   return (
-    <div className="pt-8">
+    <>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem className="hidden md:block">
@@ -24,7 +24,7 @@ const RolePage = () => {
         </BreadcrumbList>
       </Breadcrumb>
       <Role />
-    </div>
+    </>
   );
 };
 

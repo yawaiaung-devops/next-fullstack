@@ -1,12 +1,5 @@
 import { Overview, RecentActivities } from "@/components/pages/home";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import PagebreadCrumb from "@/components/share/breadCrumb";
 import {
   Card,
   CardContent,
@@ -14,35 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { GraduationCap, School, Users } from "lucide-react";
 
 export default function Page() {
   return (
     <>
-      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-        <div className="flex items-center gap-2 px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
-          />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-      </header>
+      <PagebreadCrumb
+        lists={[
+          { title: "dashboard", href: "/home" },
+          { title: "overview", href: "/home" },
+        ]}
+      />
 
       <section>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -125,6 +100,53 @@ export default function Page() {
             </CardHeader>
             <CardContent>
               <RecentActivities />
+            </CardContent>
+          </Card>
+          <Card className="col-span-3">
+            <CardHeader>
+              <CardTitle>Upcoming Courses</CardTitle>
+            </CardHeader>
+            <CardContent className="[&_div]:border-0 grid gap-2 text-white">
+              <Card className="py-0 bg-purple-500 text-white">
+                <CardContent>
+                  <div className="flex h-20 items-center gap-4">
+                    <div className="w-12 border-r text-center text-2xl font-semibold">
+                      01
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <h6>UI/UX Beginner Class</h6>
+                        <p className="text-sm">10AM - 12 PM</p>
+                      </div>
+
+                      <div className="flex justify-between items-center text-gray-100">
+                        <p className="text-sm">duration - 3 months</p>
+                        <p className="text-sm">20 Chapters </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="py-0 bg-blue-500 text-white">
+                <CardContent>
+                  <div className="flex h-20 items-center gap-4">
+                    <div className="w-12 border-r text-center text-2xl font-semibold">
+                      01
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <h6>UI/UX Beginner Class</h6>
+                        <p>10AM - 12 PM</p>
+                      </div>
+
+                      <div className="flex justify-between items-center">
+                        <h6>UI/UX Beginner Class</h6>
+                        <p>20 Chapters </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </CardContent>
           </Card>
         </div>
